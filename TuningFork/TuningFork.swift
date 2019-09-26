@@ -123,7 +123,7 @@ private let frequencies: [Double] = [
      
      fileprivate let threshold: Double
      fileprivate let smoothing: Double
-     fileprivate let microphone: AKMicrophone
+     fileprivate let microphone: AKMicrophone?
      fileprivate let tracker: AKFrequencyTracker
      fileprivate let silence: AKBooster
      fileprivate var timer: Timer?
@@ -148,7 +148,7 @@ private let frequencies: [Double] = [
       Starts the tuner.
       */
      public func start() throws {
-          microphone.start()
+          microphone?.start()
           tracker.start()
           AudioKit.output = silence
           try AudioKit.start()
@@ -175,7 +175,7 @@ private let frequencies: [Double] = [
       Stops the tuner.
       */
      public func stop() throws {
-          microphone.stop()
+          microphone?.stop()
           tracker.stop()
           try AudioKit.stop()
           timer?.invalidate()
